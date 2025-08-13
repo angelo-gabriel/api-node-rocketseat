@@ -2,6 +2,10 @@ GET http://localhost:3333/courses
 
 ###
 
+GET http://localhost:3333/courses/efbe155d-c23e-40ea-93b1-543506c70da8
+
+###
+
 POST http://localhost:3333/courses
 Content-Type: application/json
 
