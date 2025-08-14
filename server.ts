@@ -1,8 +1,15 @@
 import fastify from 'fastify'
-import crypto from 'node:crypto'
-import { eq } from 'drizzle-orm'
-import { db } from './src/database/client.ts'
-import { courses } from './src/database/schema.ts'
+import { fastifySwagger } from '@fastify/swagger'
+import {
+  validatorCompiler,
+  serializerCompiler,
+  type ZodTypeProvider,
+  jsonSchemaTransform,
+} from 'fastify-type-provider-zod'
+import { createCourseRoute } from './src/routes/create-course.ts'
+import { getCourseByIdRoute } from './src/routes/get-course-by-id.ts'
+import { getCoursesRoute } from './src/routes/get-courses.ts'
+import scalarAPIReference from '@scalar/fastify-api-reference'
 
 const server = fastify({
   logger: {
@@ -14,51 +21,33 @@ const server = fastify({
       },
     },
   },
-})
+}).withTypeProvider<ZodTypeProvider>()
 
-server.get('/courses', async (request, reply) => {
-  const result = await db.select({
-    id: courses.id,
-    title: courses.title,
-  }).from(courses)
-  
-  return reply.send({ courses: result })
-})
+if (process.env.NODE_ENV === 'development') {
+  server.register(fastifySwagger, {
+    openapi: {
+      info: {
+        title: 'Desafio API Node.js',
+        version: '1.0.0',
+      },
+    },
+    transform: jsonSchemaTransform,
+  })
 
-server.get('/courses/:id', async (request, reply) => {
-  type Params = {
-    id: string
-  }
+  server.register(scalarAPIReference, {
+    routePrefix: '/docs',
+    configuration: {
+      theme: 'kepler',
+    },
+  })
+}
 
-  const params = request.params as Params
-  const courseId = params.id
+server.setSerializerCompiler(serializerCompiler)
+server.setValidatorCompiler(validatorCompiler)
 
-  const result = await db.select().from(courses).where(eq(courses.id, courseId))
-
-  if (result.length > 0) {
-    return { course: result[0] }
-  }
-
-  return reply.status(404).send()
-})
-
-server.post('/courses', async (request, reply) => {
-  type Body = {
-    title: string
-  }
-
-  const body = request.body as Body
-  const courseTitle = body.title
-
-  if (!courseTitle) {
-    return reply.status(400).send({ message: 'Título obrigatório.' })
-  }
-  const result = await db.insert(courses).values({
-    title: courseTitle,
-  }).returning()
-
-  return reply.status(201).send({ courseId: result[0].id })
-})
+server.register(createCourseRoute)
+server.register(getCourseByIdRoute)
+server.register(getCoursesRoute)
 
 server.listen({ port: 3333 }).then(() => {
   console.log('HTTP server running!')
