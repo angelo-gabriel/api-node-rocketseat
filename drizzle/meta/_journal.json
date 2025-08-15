@@ -15,6 +15,27 @@
       "when": 1755103743453,
       "tag": "0001_nebulous_mother_askani",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1755272141245,
+      "tag": "0002_even_tag",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1755272243587,
+      "tag": "0003_stale_proteus",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1755274344595,
+      "tag": "0004_colorful_photon",
+      "breakpoints": true
     }
   ]
 }
