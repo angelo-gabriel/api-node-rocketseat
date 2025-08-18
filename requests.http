@@ -3,6 +3,7 @@ GET http://localhost:3333/courses?orderBy=title
 ###
 
 GET http://localhost:3333/courses/efbe155d-c23e-40ea-93b1-543506c70da8
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3N2UwMDFhYS0wNzJmLTQ1YzItOTQyNi1iNzY1MTNmZTk4OWUiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc1NTU0NzIzN30.Y1Qsg5JWJoE0q51GoRG75iiCk0YfEkO2B7LwHVKsrwI
 
 ###
 
@@ -11,4 +12,14 @@ Content-Type: application/json
 
 {
   "title": "Curso de C++"
+}
+
+###
+
+POST http://localhost:3333/sessions
+Content-Type: application/json
+
+{
+  "email": "Warley58@gmail.com",
+  "password": "123456"
 }
