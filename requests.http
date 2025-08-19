@@ -2,16 +2,17 @@ GET http://localhost:3333/courses?orderBy=title
 
 ###
 
-GET http://localhost:3333/courses/efbe155d-c23e-40ea-93b1-543506c70da8
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3N2UwMDFhYS0wNzJmLTQ1YzItOTQyNi1iNzY1MTNmZTk4OWUiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTc1NTU0NzIzN30.Y1Qsg5JWJoE0q51GoRG75iiCk0YfEkO2B7LwHVKsrwI
+GET http://localhost:3333/courses/c500db14-5c92-4767-8608-335769780f76
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3N2UwMDFhYS0wNzJmLTQ1YzItOTQyNi1iNzY1MTNmZTk4OWUiLCJyb2xlIjoibWFuYWdlciIsImlhdCI6MTc1NTYxNjIzOH0.YoHjHaGRELu1Wxgs48U7c-nbEThuWgv3TWWD9L0kR9o
 
 ###
 
 POST http://localhost:3333/courses
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3N2UwMDFhYS0wNzJmLTQ1YzItOTQyNi1iNzY1MTNmZTk4OWUiLCJyb2xlIjoibWFuYWdlciIsImlhdCI6MTc1NTYxNjIzOH0.YoHjHaGRELu1Wxgs48U7c-nbEThuWgv3TWWD9L0kR9o
 
 {
-  "title": "Curso de C++"
+  "title": "Curso de Cobol"
 }
 
 ###
